@@ -5,3 +5,7 @@ from django.shortcuts import render, redirect
 
 def homepage(request):
     return render(request, "mainpage/base.html")
+
+
+def record_page(request):
+    return render(request, "mainpage/record.html")

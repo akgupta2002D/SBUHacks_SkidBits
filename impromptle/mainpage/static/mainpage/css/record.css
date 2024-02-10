@@ -1,0 +1,56 @@
+/* styles.css */
+body, html {
+    height: 100%;
+    margin: 0;
+    background-color: #001338;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 25%;
+    right: 25%;
+    top: 5%;
+    bottom: 5%;
+    background-color: white; /* Slightly lighter blue for the 3D effect */
+    border-radius: 20px;
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2); /* Soft shadow for 3D effect */
+    padding: 20px;
+}
+
+.section {
+    margin: 10px 0;
+    text-align: center;
+}
+
+.middle {
+    flex-grow: 1;
+    position: relative; /* For webcam video placement */
+}
+
+#webcam {
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+}
+
+#startButton {
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    background-color: #0047b3; /* A vibrant blue for the button */
+    color: white;
+    cursor: pointer;
+}
+
+#startButton:hover {
+    background-color: #003588;
+}
+
+.section.top{
+    color: #001338;
+}
