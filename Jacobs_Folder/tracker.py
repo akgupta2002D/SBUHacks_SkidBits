@@ -8,15 +8,18 @@ mp_pose = mp.solutions.pose
 pose = mp_pose.Pose(static_image_mode=False, min_detection_confidence=0.5, min_tracking_confidence=0.5)
 mp_drawing = mp.solutions.drawing_utils
 
-last_alert_time = 0
-alert_cooldown = 5  # Seconds
+# Moving average buffer and parameters
+buffer_size = 10
+x_coords_buffer = np.zeros(buffer_size)
+buffer_index = 0
 
-# Function to issue alerts with a cooldown
-def issue_alert(message, current_time):
-    global last_alert_time
-    if current_time - last_alert_time > alert_cooldown:
-        print(message)
-        last_alert_time = current_time
+last_alert_time = 0
+alert_cooldown = 2  # Seconds
+movement_threshold = 0.05  # Adjust based on testing
+
+def update_buffer(buffer, index, value):
+    buffer[index % len(buffer)] = value
+    return (index + 1) % len(buffer), np.mean(buffer)
 
 # Capture video from webcam.
 cap = cv2.VideoCapture(0)
@@ -37,11 +40,21 @@ while cap.isOpened():
     results = pose.process(image)
 
     if results.pose_landmarks:
-        # Analyze posture and head orientation here
-        # Placeholder for your analysis logic
-        
-        # Example alert for demonstration
-        issue_alert("Please adjust your posture.", current_time)
+        landmarks = results.pose_landmarks.landmark
+        nose_x = landmarks[mp_pose.PoseLandmark.NOSE.value].x
+
+        # Update and get smoothed nose x-coordinate
+        buffer_index, smoothed_nose_x = update_buffer(x_coords_buffer, buffer_index, nose_x)
+        ear_midpoint_x = (landmarks[mp_pose.PoseLandmark.LEFT_EAR.value].x + landmarks[mp_pose.PoseLandmark.RIGHT_EAR.value].x) / 2
+
+        # Check direction based on smoothed value and threshold
+        if current_time - last_alert_time > alert_cooldown:
+            if smoothed_nose_x < ear_midpoint_x - movement_threshold:
+                print("You looked to the left.")
+                last_alert_time = current_time
+            elif smoothed_nose_x > ear_midpoint_x + movement_threshold:
+                print("You looked to the right.")
+                last_alert_time = current_time
 
     # Display the image
     image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
