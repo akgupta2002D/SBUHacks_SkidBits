@@ -4,15 +4,23 @@ from collections import Counter
 # Your sample text
 sample_text = """
 Um, I just want to say ah, that, um, this is like, basically, a demo of how so, you know, filler words can, um, 
-make a speech less impactful. And like, when we repeat words, repeat words in a sentence, it's not effective.
+make a speech less impactful. And like, when we repeat words, repeat words in a sentence, it's not effective. Yes Yes.
 """
 
 # Your patterns
-expanded_crutch_words = r'\b(um|uh|ah|like|so|actually|basically|seriously|literally|okay|right|you know)\b'
+#crutch_words_pattern = r'\b(um|uh|ah|like|so|actually|basically|seriously|literally|okay|right|you know)\b'
+crutch_words_pattern = r'\b(um|uh|ah|like|so|actually|basically|seriously|literally|okay|right|you\s*,*\s*know|honestly|' \
+                           r'nevertheless|essentially|moreover|nonetheless|furthermore|consequently|i\s*mean|in\s*a\s*sense|' \
+                           r'to\s*be\shonest|to\stell\s*you\sthe\struth|as\s*i\swas\ssaying|the\s*thing\sis|' \
+                           r'at\s*the\send\sof\sthe\s*day|as\s*a\smatter\sof\s*fact|if\sy|will|as\s*far\s*as\s*i\s*know|' \
+                           r'believe\s*me|to\s*be\s*fair|as\s*a\s*result|on\s*the\sother\shand|' \
+                           r'to\s*put\s*it\sdifferently|to\s*some\s*extent|needless\s*to\s*say|in\s*any\s*case|' \
+                           r'all\s*things\s*considered|to\s*my\s*knowledge|in\s*a\smanner\sof\sspeaking|mmm|hmm|uh-huh|mm-hmm|uh-oh|' \
+                           r'huh|hmm-mm|uh-uh|erm|ahem|uhh|well,\s*you\s*see|oh|ooh|aha|duh|yikes)\b'
 repetition_pattern = r'\b(\w+)\s+\1\b'
 
 # Finding matches
-expanded_crutch_words_found = re.findall(expanded_crutch_words, sample_text.lower())
+expanded_crutch_words_found = re.findall(crutch_words_pattern, sample_text.lower())
 direct_repetitions_found = re.findall(repetition_pattern, sample_text.lower())
 
 # Count all word occurrences (this was missing)
