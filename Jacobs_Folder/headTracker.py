@@ -17,9 +17,12 @@ buffer_index = 0
 # Individual cooldowns for each direction
 last_alert_time_left = last_alert_time_right = last_alert_time_up = last_alert_time_down = 0
 alert_cooldown = 2  # Seconds
-movement_threshold = 0.1  # Horizontal movement sensitivity
-vertical_movement_threshold_up = 0.05  # Decreased for "up" sensitivity
-vertical_movement_threshold_down = 0.15  # Increased for "down" sensitivity
+# increasing threshold decreases sensitivity
+# decreasing threshold increases sensitivity
+horizontal_movement_threshold_left = 0.05  
+horizontal_movement_threshold_right = 0.05  
+vertical_movement_threshold_up = 0.05
+vertical_movement_threshold_down = 0.05
 
 def update_buffer(buffer, index, value):
     buffer[index % len(buffer)] = value
@@ -53,6 +56,9 @@ if not cap.isOpened():
 # Calibrate neutral position
 neutral_nose_y = calibrate_neutral_position(cap, pose)
 
+# Right after calibration is complete, set a calibration time marker
+calibration_complete_time = time.time()
+
 while cap.isOpened():
     ret, frame = cap.read()
     if not ret:
@@ -77,16 +83,16 @@ while cap.isOpened():
         ear_midpoint_x = (landmarks[mp_pose.PoseLandmark.LEFT_EAR.value].x + landmarks[mp_pose.PoseLandmark.RIGHT_EAR.value].x) / 2
         eyes_midpoint_y = (landmarks[mp_pose.PoseLandmark.LEFT_EYE.value].y + landmarks[mp_pose.PoseLandmark.RIGHT_EYE.value].y) / 2
 
-        # Horizontal movement detection with individual cooldowns
-        if smoothed_nose_x < ear_midpoint_x - movement_threshold and current_time - last_alert_time_left > alert_cooldown:
+        # Adjusted horizontal movement detection with individual thresholds
+        if smoothed_nose_x < ear_midpoint_x - horizontal_movement_threshold_left and current_time - last_alert_time_left > alert_cooldown and current_time - calibration_complete_time > 2:
             print("You looked to the left.")
             last_alert_time_left = current_time
-        elif smoothed_nose_x > ear_midpoint_x + movement_threshold and current_time - last_alert_time_right > alert_cooldown:
+        elif smoothed_nose_x > ear_midpoint_x + horizontal_movement_threshold_right and current_time - last_alert_time_right > alert_cooldown:
             print("You looked to the right.")
             last_alert_time_right = current_time
 
         # Vertical movement detection with individual cooldowns and adjusted thresholds
-        if smoothed_nose_y < neutral_nose_y - vertical_movement_threshold_up and current_time - last_alert_time_up > alert_cooldown:
+        if smoothed_nose_y < neutral_nose_y - vertical_movement_threshold_up and current_time - last_alert_time_up > alert_cooldown and current_time - calibration_complete_time > 2:
             print("You looked up.")
             last_alert_time_up = current_time
         elif smoothed_nose_y > neutral_nose_y + vertical_movement_threshold_down and current_time - last_alert_time_down > alert_cooldown:
