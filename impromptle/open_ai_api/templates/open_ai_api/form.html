@@ -1,0 +1,27 @@
+<!-- open_ai/templates/open_ai/form.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ask OpenAI</title>
+</head>
+<body>
+    <h1>Ask OpenAI</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="prompt">Enter your prompt:</label><br>
+        <textarea id="prompt" name="prompt" rows="4" cols="50">{{ prompt|default_if_none:"" }}</textarea><br>
+        <input type="submit" value="Submit">
+    </form>
+
+    {% if prompt %}
+        <h2>Your Prompt:</h2>
+        <p>{{ prompt }}</p>
+    {% endif %}
+
+    {% if response %}
+        <h2>Response:</h2>
+        <p>{{ response }}</p>
+    {% endif %}
+</body>
+</html>
