@@ -17,8 +17,8 @@ buffer_index = 0
 last_alert_time_left = last_alert_time_right = last_alert_time_up = last_alert_time_down = 0
 alert_cooldown = 2  # Seconds
 
-horizontal_movement_threshold_left = 0.05  
-horizontal_movement_threshold_right = 0.05  
+horizontal_movement_threshold_left = 0.05
+horizontal_movement_threshold_right = 0.05
 vertical_movement_threshold_up = 0.05
 vertical_movement_threshold_down = 0.05
 
