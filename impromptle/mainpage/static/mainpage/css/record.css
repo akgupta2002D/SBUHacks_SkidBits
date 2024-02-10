@@ -54,3 +54,7 @@ body, html {
 .section.top{
     color: #001338;
 }
+
+#timer{
+    color: red;
+}

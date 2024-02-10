@@ -1,0 +1,21 @@
+
+  
+  {% extends 'mainpage/base.html' %}
+{% load static %}
+
+{% block title %}Webcam Page{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'mainpage/css/record.css' %}" />
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <!-- view_video.html -->
+    <video width="320" height="240" controls>
+    <source src="{{ video.video.url }}" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</div>
+{% comment %} <script src="{% static 'mainpage/js/record.js' %}"></script> {% endcomment %}
+{% endblock %}
