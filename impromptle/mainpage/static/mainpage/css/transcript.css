@@ -10,6 +10,7 @@
     box-sizing: border-box;
     margin: 10px;
     padding: 10px;
+    height: 100vh;
 }
 
 .dashboard-container {
@@ -24,6 +25,7 @@
 .video-container .show-transcript {
     width: 100%;
     margin-bottom: 20px; /* Space between video and transcription */
+    margin-top: 20px;
 }
 
 /* Optional: Styling for the dashboard */
