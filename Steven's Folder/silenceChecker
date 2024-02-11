@@ -8,7 +8,7 @@ def detect_silence_count(audio_path):
 
     # Detect silence, adjust parameters as needed
     # silence_thresh: silence threshold in dB. Lower values mean more silence will be detected.
-    # min_silence_len: minimum length of silence in milliseconds that will be detected.
+    # min_silence_len: minimum length of silence inclear milliseconds that will be detected.
     silence = detect_silence(audio, min_silence_len=1500, silence_thresh=-40)
 
     # Check if any silence was detected
@@ -25,5 +25,5 @@ def detect_silence_count(audio_path):
         print(f"Your speech contains {len(silence_in_seconds)} periods of silence. The durations are as follows: {times_str}.")
         return len(silence_in_seconds)
 
-audio_path = r"C:\Users\shidi\Projects\SBUHacks_SkidBits\Steven's Folder\girlsample6.m4a"
+audio_path = r"C:\Users\shidi\Projects\SBUHacks_SkidBits\Steven's Folder\recordingdemo.mov"
 silence_count = detect_silence_count(audio_path)
