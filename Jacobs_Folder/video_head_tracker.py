@@ -27,38 +27,31 @@ with open('head_movements.log', 'w') as file:
     def update_buffer(buffer, index, value):
         buffer[index % len(buffer)] = value
         return (index + 1) % len(buffer), np.mean(buffer)
-
-    def calibrate_neutral_position(video_path, pose):
-        # Assuming the first frames of the video are suitable for calibration.
-        print("Calibrating... Please ensure the video starts in a neutral position.")
-        file.write("Calibrating... Please ensure the video starts in a neutral position.\n")
+    
+    def capture_neutral_position(video_path, pose):
+        print("Capturing neutral position from the video.")
         cap = cv2.VideoCapture(video_path)
         if not cap.isOpened():
             print("Cannot open video file")
             return None
-        neutral_poses = []
-        while len(neutral_poses) < 30:  # Capture 30 frames for averaging
-            ret, frame = cap.read()
-            if not ret:
-                break
-            image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-            results = pose.process(image)
-            if results.pose_landmarks:
-                landmarks = results.pose_landmarks.landmark
-                neutral_poses.append(landmarks[mp_pose.PoseLandmark.NOSE.value].y)
+        ret, frame = cap.read()
+        if not ret:
+            print("Failed to capture a frame for calibration.")
+            return None
+        image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        results = pose.process(image)
         cap.release()
-        if neutral_poses:
-            neutral_nose_y = np.mean(neutral_poses)
-            print("Calibration complete.")
-            file.write("Calibration complete.\n")
+        if results.pose_landmarks:
+            landmarks = results.pose_landmarks.landmark
+            neutral_nose_y = landmarks[mp_pose.PoseLandmark.NOSE.value].y
+            print("Neutral position captured.")
             return neutral_nose_y
         else:
-            print("Calibration failed.")
-            file.write("Calibration failed.\n")
+            print("Failed to detect pose in calibration frame.")
             return None
 
     video_path = '/Users/jacob/Desktop/SBUHacks_SkidBits/Jacobs_Folder/recorded-video.webm'  # Change this to your video file path
-    neutral_nose_y = calibrate_neutral_position(video_path, pose)
+    neutral_nose_y = capture_neutral_position(video_path, pose)
 
     if neutral_nose_y is None:
         exit()
