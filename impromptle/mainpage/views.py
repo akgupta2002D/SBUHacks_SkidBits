@@ -12,7 +12,7 @@ from django.http import HttpResponse
 
 
 def homepage(request):
-    return render(request, "mainpage/base.html")
+    return render(request, "mainpage/landing.html")
 
 
 def webcam_page(request):
