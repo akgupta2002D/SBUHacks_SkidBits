@@ -1,14 +1,11 @@
 from pydub import AudioSegment
 from pydub.silence import detect_silence
 
-# Function to detect silence and return the count
 def detect_silence_count(audio_path):
     # Load the audio file
     audio = AudioSegment.from_file(audio_path)
 
     # Detect silence, adjust parameters as needed
-    # silence_thresh: silence threshold in dB. Lower values mean more silence will be detected.
-    # min_silence_len: minimum length of silence inclear milliseconds that will be detected.
     silence = detect_silence(audio, min_silence_len=1500, silence_thresh=-40)
 
     # Check if any silence was detected
@@ -19,11 +16,15 @@ def detect_silence_count(audio_path):
         # Convert silence times to seconds
         silence_in_seconds = [(start / 1000, stop / 1000) for start, stop in silence]
         
-        # Prepare times for printing
-        times_str = ", ".join([f"from {start:.2f} to {stop:.2f} seconds" for start, stop in silence_in_seconds])
+        # Print the count of pauses
+        print(f"Pauses: {len(silence_in_seconds)}")
         
-        print(f"Your speech contains {len(silence_in_seconds)} periods of silence. The durations are as follows: {times_str}.")
+        # Print each pause duration on a new line
+        for start, stop in silence_in_seconds:
+            print(f"{start:.1f}s - {stop:.1f}s")
+
         return len(silence_in_seconds)
 
+# Example usage
 audio_path = r"C:\Users\shidi\Projects\SBUHacks_SkidBits\Steven's Folder\recordingdemo.mov"
 silence_count = detect_silence_count(audio_path)
