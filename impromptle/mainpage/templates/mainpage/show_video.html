@@ -1,0 +1,35 @@
+
+  
+{% extends 'mainpage/base.html' %}
+{% load static %}
+
+{% block title %}Webcam Page{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'mainpage/css/transcript.css' %}" />
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="video-container">
+        <h2>Describe your favourite sports moment
+        </h2>
+        <!-- Existing video and transcription HTML -->
+        <!-- Inside your <body> tag, probably near the video element -->
+        <input type="hidden" id="videoId" value="{{ video.id }}">
+
+        <video controls>
+            <source src="{{ video.video.url }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="transcript-section">
+
+        </div>
+        
+    </div>
+    <div class="dashboard-container">
+        <!-- Dashboard content goes here -->
+    </div>
+</div>
+<script src="{% static 'mainpage/js/view_video.js' %}"></script>
+{% endblock %}
