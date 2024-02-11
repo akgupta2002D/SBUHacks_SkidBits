@@ -57,7 +57,7 @@ with open('head_movements.log', 'w') as file:
             file.write("Calibration failed.\n")
             return None
 
-    video_path = '/Users/jacob/Desktop/SBUHacks_SkidBits/Jacobs_Folder/recorded-video.webm'  # Change this to your video file path
+    video_path = 'D:/Recycle Bin/Video/sample.mp4'  # Change this to your video file path
     neutral_nose_y = calibrate_neutral_position(video_path, pose)
 
     if neutral_nose_y is None:
