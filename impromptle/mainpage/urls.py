@@ -7,4 +7,6 @@ urlpatterns = [
     # path('process-video/', views.process_video, name='process_video'),
     path('upload/', views.upload_video, name='upload_video'),
     path('video/<int:video_id>/', views.view_video, name='view_video'),
+    path('videos/<int:video_id>/analyze/',
+         views.analyze_transcription, name='analyze_transcription')
 ]
