@@ -11,7 +11,7 @@
 	</script>
 
 	<meta name='robots' content='noindex,nofollow' />
-	<title>Impromp2 | Speak Better</title>
+	<title>Impromp2 | Speak Better </title>
 	<meta name='robots' content='noindex, nofollow' />
 	<link rel='dns-prefetch' href='//fonts.googleapis.com' />
 	<link rel="alternate" type="application/rss+xml" title="Skidmore Codes &raquo; Feed"
@@ -207,19 +207,35 @@
 			padding: 1.25em 2.375em
 		}
 	</style>
+
 	<style>
-		.center {
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			height: 100vh;
+		body {
+			font-family: 'Archivo', sans-serif;
+			max-width: 100%;
+			margin: 0 auto;
+			/* Center content */
 		}
 
-		.resized-image {
-			width: 80%;
-			/* Adjust the width as needed */
-			height: auto;
-			/* Maintain aspect ratio */
+		.center-container {
+			text-align: center;
+		}
+
+		.center-container button {
+			padding: 10px 35px;
+			/* Increase padding for a larger button */
+			font-size: 40px;
+			/* Increase font size */
+			font-weight: bold;
+			/* Make the text bold */
+			border-radius: 10%;
+			background-color: orange;
+			color: white;
+			border: none;
+			transition: transform 0.3s ease-in-out;
+		}
+
+		.center-container button:hover {
+			transform: scale(1.1);
 		}
 	</style>
 
@@ -5187,172 +5203,6 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 			position: relative
 		}
 
-		.et_pb_with_border .et_pb_image_wrap {
-			border: 0 solid #333
-		}
-
-		.et_pb_image {
-			margin-left: auto;
-			margin-right: auto;
-			line-height: 0
-		}
-
-		.et_pb_image.aligncenter {
-			text-align: center
-		}
-
-		.et_pb_image.et_pb_has_overlay a.et_pb_lightbox_image {
-			display: block;
-			position: relative
-		}
-
-		.et_pb_image {
-			display: block
-		}
-
-		.et_pb_image .et_pb_image_wrap {
-			display: inline-block;
-			position: relative;
-			max-width: 100%
-		}
-
-		.et_pb_image .et_pb_image_wrap img[src*=".svg"] {
-			width: auto
-		}
-
-		.et_pb_image img {
-			position: relative
-		}
-
-		.et_pb_image_sticky {
-			margin-bottom: 0 !important;
-			display: inherit
-		}
-
-		.et_pb_image.et_pb_has_overlay .et_pb_image_wrap:hover .et_overlay {
-			z-index: 3;
-			opacity: 1
-		}
-
-		@media (min-width:981px) {
-
-			.et_pb_section_sticky,
-			.et_pb_section_sticky.et_pb_bottom_divider .et_pb_row:nth-last-child(2),
-			.et_pb_section_sticky .et_pb_column_single,
-			.et_pb_section_sticky .et_pb_row.et-last-child,
-			.et_pb_section_sticky .et_pb_row:last-child,
-			.et_pb_section_sticky .et_pb_specialty_column .et_pb_row_inner.et-last-child,
-			.et_pb_section_sticky .et_pb_specialty_column .et_pb_row_inner:last-child {
-				padding-bottom: 0 !important
-			}
-		}
-
-		@media (max-width:980px) {
-			.et_pb_image_sticky_tablet {
-				margin-bottom: 0 !important;
-				display: inherit
-			}
-
-			.et_pb_section_sticky_mobile,
-			.et_pb_section_sticky_mobile.et_pb_bottom_divider .et_pb_row:nth-last-child(2),
-			.et_pb_section_sticky_mobile .et_pb_column_single,
-			.et_pb_section_sticky_mobile .et_pb_row.et-last-child,
-			.et_pb_section_sticky_mobile .et_pb_row:last-child,
-			.et_pb_section_sticky_mobile .et_pb_specialty_column .et_pb_row_inner.et-last-child,
-			.et_pb_section_sticky_mobile .et_pb_specialty_column .et_pb_row_inner:last-child {
-				padding-bottom: 0 !important
-			}
-
-			.et_pb_section_sticky .et_pb_row.et-last-child .et_pb_column.et_pb_row_sticky.et-last-child,
-			.et_pb_section_sticky .et_pb_row:last-child .et_pb_column.et_pb_row_sticky:last-child {
-				margin-bottom: 0
-			}
-
-			.et_pb_image_bottom_space_tablet {
-				margin-bottom: 30px !important;
-				display: block
-			}
-
-			.et_always_center_on_mobile {
-				text-align: center !important;
-				margin-left: auto !important;
-				margin-right: auto !important
-			}
-		}
-
-		@media (max-width:767px) {
-			.et_pb_image_sticky_phone {
-				margin-bottom: 0 !important;
-				display: inherit
-			}
-
-			.et_pb_image_bottom_space_phone {
-				margin-bottom: 30px !important;
-				display: block
-			}
-		}
-
-		.et_overlay {
-			z-index: -1;
-			position: absolute;
-			top: 0;
-			left: 0;
-			display: block;
-			width: 100%;
-			height: 100%;
-			background: hsla(0, 0%, 100%, .9);
-			opacity: 0;
-			pointer-events: none;
-			-webkit-transition: all .3s;
-			transition: all .3s;
-			border: 1px solid #e5e5e5;
-			-webkit-box-sizing: border-box;
-			box-sizing: border-box;
-			-webkit-backface-visibility: hidden;
-			backface-visibility: hidden;
-			-webkit-font-smoothing: antialiased
-		}
-
-		.et_overlay:before {
-			color: #2ea3f2;
-			content: "\E050";
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			-webkit-transform: translate(-50%, -50%);
-			transform: translate(-50%, -50%);
-			font-size: 32px;
-			-webkit-transition: all .4s;
-			transition: all .4s
-		}
-
-		.et_portfolio_image,
-		.et_shop_image {
-			position: relative;
-			display: block
-		}
-
-		.et_pb_has_overlay:not(.et_pb_image):hover .et_overlay,
-		.et_portfolio_image:hover .et_overlay,
-		.et_shop_image:hover .et_overlay {
-			z-index: 3;
-			opacity: 1
-		}
-
-		#ie7 .et_overlay,
-		#ie8 .et_overlay {
-			display: none
-		}
-
-		.et_pb_module.et_pb_has_overlay {
-			position: relative
-		}
-
-		.et_pb_module.et_pb_has_overlay .et_overlay,
-		article.et_pb_has_overlay {
-			border: none
-		}
-
 		.et_pb_bg_layout_light.et_pb_module.et_pb_button {
 			color: #2ea3f2
 		}
@@ -5422,8 +5272,11 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 			}
 		}
 	</style>
+	<link rel='preload' id='divi-dynamic-late-css'
+		href='https://academics.skidmore.edu/blogs/skidmorecodes/wp-content/et-cache/1/2298/206/et-divi-dynamic-206-late.css?ver=1707613638'
+		as='style' media='all' onload="this.onload=null;this.rel='stylesheet'" />
 	<link rel='stylesheet' id='et-builder-googlefonts-cached-css'
-		href='https://fonts.googleapis.com/css?family=PT+Sans:regular,italic,700,700italic|Patua+One:regular&#038;subset=latin,latin-ext&#038;display=swap'
+		href='https://fonts.googleapis.com/css?family=Archivo:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic|Alice:regular&#038;subset=latin,latin-ext&#038;display=swap'
 		type='text/css' media='all' />
 	<script type='text/javascript'
 		src='https://academics.skidmore.edu/blogs/skidmorecodes/wp-includes/js/jquery/jquery.min.js?ver=3.7.0'
@@ -5433,15 +5286,16 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 		id='jquery-migrate-js'></script>
 	<link rel="https://api.w.org/" href="https://academics.skidmore.edu/blogs/skidmorecodes/wp-json/" />
 	<link rel="alternate" type="application/json"
-		href="https://academics.skidmore.edu/blogs/skidmorecodes/wp-json/wp/v2/pages/241" />
+		href="https://academics.skidmore.edu/blogs/skidmorecodes/wp-json/wp/v2/pages/206" />
 	<link rel="EditURI" type="application/rsd+xml" title="RSD"
 		href="https://academics.skidmore.edu/blogs/skidmorecodes/xmlrpc.php?rsd" />
 	<meta name="generator" content="WordPress 6.3.3" />
-	<link rel='shortlink' href='https://academics.skidmore.edu/blogs/skidmorecodes/?p=241' />
+	<link rel="canonical" href="https://academics.skidmore.edu/blogs/skidmorecodes/jumbola/" />
+	<link rel='shortlink' href='https://academics.skidmore.edu/blogs/skidmorecodes/?p=206' />
 	<link rel="alternate" type="application/json+oembed"
-		href="https://academics.skidmore.edu/blogs/skidmorecodes/wp-json/oembed/1.0/embed?url=https%3A%2F%2Facademics.skidmore.edu%2Fblogs%2Fskidmorecodes%2Fwebcam%2F" />
+		href="https://academics.skidmore.edu/blogs/skidmorecodes/wp-json/oembed/1.0/embed?url=https%3A%2F%2Facademics.skidmore.edu%2Fblogs%2Fskidmorecodes%2Fjumbola%2F" />
 	<link rel="alternate" type="text/xml+oembed"
-		href="https://academics.skidmore.edu/blogs/skidmorecodes/wp-json/oembed/1.0/embed?url=https%3A%2F%2Facademics.skidmore.edu%2Fblogs%2Fskidmorecodes%2Fwebcam%2F&#038;format=xml" />
+		href="https://academics.skidmore.edu/blogs/skidmorecodes/wp-json/oembed/1.0/embed?url=https%3A%2F%2Facademics.skidmore.edu%2Fblogs%2Fskidmorecodes%2Fjumbola%2F&#038;format=xml" />
 
 	<style type="text-css">
 		#wpmu-footer-html	{
@@ -5640,33 +5494,60 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 			}
 		}
 
+		div.et_pb_section.et_pb_section_0 {
+			background-position: center bottom 0px;
+			background-image: url(http://academics.skidmore.edu/blogs/skidmorecodes/files/2024/02/artificial-intelligence-background-02@2x.png) !important
+		}
+
 		.et_pb_section_0.et_pb_section {
-			padding-top: 0vw;
-			padding-bottom: 0vw;
-			background-color: #FFFFFF !important
+			padding-top: 8vw;
+			padding-bottom: 28vw
 		}
 
-		.et_pb_section_0,
-		.et_pb_row_0 {
-			transition: border-radius 300ms ease 0ms
+		.et_pb_row_0,
+		body #page-container .et-db #et-boc .et-l .et_pb_row_0.et_pb_row,
+		body.et_pb_pagebuilder_layout.single #page-container #et-boc .et-l .et_pb_row_0.et_pb_row,
+		body.et_pb_pagebuilder_layout.single.et_full_width_page #page-container #et-boc .et-l .et_pb_row_0.et_pb_row {
+			max-width: none
 		}
 
-		.et_pb_text_0 {
-			line-height: 1.8em;
-			font-family: 'PT Sans', Helvetica, Arial, Lucida, sans-serif;
-			font-size: 30px;
-			line-height: 1.8em
-		}
-
-		.et_pb_text_0 h1 {
-			font-family: 'Patua One', display;
-			font-size: 70px;
+		.et_pb_text_0 h2 {
+			font-family: 'Archivo', Helvetica, Arial, Lucida, sans-serif;
+			font-weight: 900;
+			font-size: 6vw;
+			color: #000000 !important;
 			line-height: 1.2em
 		}
 
-		.et_pb_image_0 {
-			text-align: left;
-			margin-left: 0
+		.et_pb_button_0_wrapper .et_pb_button_0,
+		.et_pb_button_0_wrapper .et_pb_button_0:hover {
+			padding-top: 20px !important;
+			padding-right: 34px !important;
+			padding-bottom: 20px !important;
+			padding-left: 34px !important
+		}
+
+		body #page-container .et_pb_section .et_pb_button_0 {
+			color: #FFFFFF !important;
+			border-width: 0px !important;
+			border-radius: 100px;
+			font-size: 26px;
+			font-family: 'Archivo', Helvetica, Arial, Lucida, sans-serif !important;
+			font-weight: 500 !important;
+			text-transform: uppercase !important;
+			background-color: #000000
+		}
+
+		body #page-container .et_pb_section .et_pb_button_0:after {
+			font-size: 1.6em
+		}
+
+		body.et_button_custom_icon #page-container .et_pb_button_0:after {
+			font-size: 26px
+		}
+
+		.et_pb_button_0 {
+			box-shadow: 5px 6px 18px 0px rgba(0, 0, 0, 0.3)
 		}
 
 		.et_pb_button_0,
@@ -5675,168 +5556,111 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 		}
 
 		@media only screen and (max-width:980px) {
-			.et_pb_text_0 h1 {
-				font-size: 40px
+			body #page-container .et_pb_section .et_pb_button_0:after {
+				display: inline-block;
+				opacity: 0
 			}
 
-			.et_pb_image_0 .et_pb_image_wrap img {
-				width: auto
+			body #page-container .et_pb_section .et_pb_button_0:hover:after {
+				opacity: 1
 			}
 		}
 
 		@media only screen and (max-width:767px) {
-			.et_pb_text_0 {
-				font-size: 16px
+			body #page-container .et_pb_section .et_pb_button_0:after {
+				display: inline-block;
+				opacity: 0
 			}
 
-			.et_pb_image_0 .et_pb_image_wrap img {
-				width: auto
+			body #page-container .et_pb_section .et_pb_button_0:hover:after {
+				opacity: 1
 			}
 		}
-		.button-container {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		height: 10vh;
-		}
-
-		.custom-button {
-		padding: 15px 30px;
-		font-size: 20px;
-		cursor: pointer;
-		outline: none; /* Remove default button outline */
-		border-radius: 5px; /* Optional: Add rounded corners */
-		font-family: 'Archivo', sans-serif; /* Specify the Archivo font */
-		font-weight: bold; /* Set font-weight to bold */
-
-		}
-
-		.red-button {
-		border: 2px solid red;
-		background-color: white;
-		color: red;
-		}
-
-		.green-button {
-		border: 2px solid green;
-		background-color: white;
-		color: green;
-		}
-
-		.custom-button:hover {
-		background-color: transparent; /* Set the background to transparent on hover */
-		}
-
-		.red-button:hover {
-		background-color: red;
-		color: white;
-		}
-
-		.green-button:hover {
-		background-color: green;
-		color: white;
-		}
-
 	</style>
 </head>
 
 <body
-	class="page-template-default page page-id-241 et_pb_button_helper_class et_fixed_nav et_show_nav et_hide_primary_logo et_hide_fixed_logo et_hide_mobile_logo et_primary_nav_dropdown_animation_fade et_secondary_nav_dropdown_animation_fade et_header_style_left et_pb_footer_columns4 et_cover_background et_pb_gutter windows et_pb_gutters3 et_pb_pagebuilder_layout et_no_sidebar et_divi_theme et-db">
+	class="page-template-default page page-id-206 et_pb_button_helper_class et_fixed_nav et_show_nav et_hide_primary_logo et_hide_fixed_logo et_hide_mobile_logo et_primary_nav_dropdown_animation_fade et_secondary_nav_dropdown_animation_fade et_header_style_left et_pb_footer_columns4 et_cover_background et_pb_gutter windows et_pb_gutters3 et_pb_pagebuilder_layout et_no_sidebar et_divi_theme et-db">
 	<div id="page-container">
-		<div class="container clearfix et_menu_container">
-			<div class="logo_container">
-				<span class="logo_helper"></span>
-				<a href="https://academics.skidmore.edu/blogs/skidmorecodes/">
-					<img src="https://academics.skidmore.edu/blogs/skidmorecodes/wp-content/themes/Divi/images/logo.png"
-						width="93" height="43" alt="Skidmore Codes" id="logo" data-height-percentage="54" />
-				</a>
+
+
+
+		<header id="main-header" data-height-onload="66">
+			<div class="container clearfix et_menu_container">
+				<div class="logo_container">
+					<span class="logo_helper"></span>
+					<a href="https://academics.skidmore.edu/blogs/skidmorecodes/">
+						<img src="https://academics.skidmore.edu/blogs/skidmorecodes/wp-content/themes/Divi/images/logo.png"
+							width="93" height="43" alt="Skidmore Codes" id="logo" data-height-percentage="54" />
+					</a>
+				</div>
+				<!-- #et-top-navigation -->
+			</div> <!-- .container -->
+			<div class="et_search_outer">
+				<div class="container et_search_form_container">
+					<form role="search" method="get" class="et-search-form"
+						action="https://academics.skidmore.edu/blogs/skidmorecodes/">
+						<input type="search" class="et-search-field" placeholder="Search &hellip;" value="" name="s"
+							title="Search for:" />
+					</form>
+					<span class="et_close_search_field"></span>
+				</div>
 			</div>
+		</header> <!-- #main-header -->
+		<div id="et-main-area">
 
-
-		</div>
-	</div> <!-- #et-top-navigation -->
-	</div> <!-- .container -->
-	<div class="et_search_outer">
-		<div class="container et_search_form_container">
-			<form role="search" method="get" class="et-search-form"
-				action="https://academics.skidmore.edu/blogs/skidmorecodes/">
-				<input type="search" class="et-search-field" placeholder="Search &hellip;" value="" name="s"
-					title="Search for:" />
-			</form>
-			<span class="et_close_search_field"></span>
-		</div>
-	</div>
-	</header> <!-- #main-header -->
-	<div id="et-main-area">
-
-		<div id="main-content">
-			<article id="post-241" class="post-241 page type-page status-publish hentry">
-
-
-				<div class="entry-content">
-					<div class="et-l et-l--post">
-						<div class="et_builder_inner_content et_pb_gutters3">
-							<div
-								class="et_pb_section et_pb_section_0 et_hover_enabled et_pb_with_background et_section_regular">
+			<div id="main-content">
 
 
 
-								<div class="et_pb_row et_pb_row_0 et_hover_enabled">
-									<div
-										class="et_pb_column et_pb_column_4_4 et_pb_column_0  et_pb_css_mix_blend_mode_passthrough et-last-child">
+				<article id="post-206" class="post-206 page type-page status-publish hentry">
+
+
+					<div class="entry-content">
+						<div class="et-l et-l--post">
+							<div class="et_builder_inner_content et_pb_gutters3">
+								<div class="et_pb_section et_pb_section_0 et_pb_with_background et_section_regular">
 
 
 
 
+
+
+									<div class="et_pb_row et_pb_row_0">
 										<div
-											class="et_pb_module et_pb_text et_pb_text_0  et_pb_text_align_center et_pb_bg_layout_light">
+											class="et_pb_column et_pb_column_4_4 et_pb_column_0  et_pb_css_mix_blend_mode_passthrough et-last-child">
 
 
 
 
-											<div class="et_pb_text_inner">
-												<h1 style="color: #000000; font-family: 'Archivo', sans-serif;">Prompt
-												</h1>
-												<p style="color: #000000; font-family: 'Archivo', sans-serif; ">*Dynamic
-													thing that needs to change from ChatGPT*</p>
+											<div
+												class="et_pb_module et_pb_text et_pb_text_0  et_pb_text_align_center et_pb_bg_layout_light">
+
+
+
+
+												<div class="et_pb_text_inner">
+													<h2>Impromp2</h2>
+													<p><span
+															style="font-family: Alice;font-weight: normal;font-size: x-large">A
+															2 Minute Impromptu</span></p>
+													<p>&nbsp;</p>
+												</div>
 											</div>
 
-										</div>
-
-
-
-
-									</div>
-									<div class="et_pb_row et_pb_row_1">
-										<div
-											class="et_pb_column et_pb_column_4_4 et_pb_column_1  et_pb_css_mix_blend_mode_passthrough et-last-child">
-
-
-
-
-											<div class="et_pb_module et_pb_image et_pb_image_0">
-
+											<div class="center-container">
+												<button>Start</button>
 											</div>
+											<!--             
+            <div class="center-container et_pb_button_module_wrapper et_pb_button_0_wrapper et_pb_button_alignment_center et_pb_module">
+                <button>Click me</button>
+              </div> -->
+
+
+											<!-- <div class="et_pb_button_module_wrapper et_pb_button_0_wrapper et_pb_button_alignment_center et_pb_module ">
+				<a class="et_pb_button et_pb_button_0 et_animated et_pb_bg_layout_light" href="">ready</a>
+			</div> -->
 										</div>
-
-
-
-
-									</div>
-									<div>
-										
-										<div class="button-container">
-											<a href="#" class="custom-button red-button">Record Live</a>
-										</div>
-										<div class="button-container">
-											<a href="#" class="custom-button green-button">Upload File</a>
-										</div>
-
-
-									
-									  </div>
-									  
-									  
 
 
 
@@ -5850,64 +5674,54 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 					</div>
 
 
-			</article>
+				</article>
 
+
+
+			</div>
 
 
 		</div>
+		<script type="application/javascript">
+			(function () {
+				var file = ["https:\/\/academics.skidmore.edu\/blogs\/skidmorecodes\/wp-content\/et-cache\/1\/2298\/206\/et-divi-dynamic-206-late.css"];
+				var handle = document.getElementById('divi-style-inline-inline-css');
+				var location = handle.parentNode;
 
+				if (0 === document.querySelectorAll('link[href="' + file + '"]').length) {
+					var link = document.createElement('link');
+					link.rel = 'stylesheet';
+					link.id = 'et-dynamic-late-css';
+					link.href = file;
 
-	</div>
-
-
-	</div>
-
-	<link rel='stylesheet' id='wp-block-library-css'
-		href='https://academics.skidmore.edu/blogs/skidmorecodes/wp-includes/css/dist/block-library/style.min.css?ver=6.3.3'
-		type='text/css' media='none' onload="media='all'" />
-	<script type='text/javascript' id='divi-custom-script-js-extra'>
-		/* <![CDATA[ */
-		var DIVI = { "item_count": "%d Item", "items_count": "%d Items" };
-		var et_builder_utils_params = { "condition": { "diviTheme": true, "extraTheme": false }, "scrollLocations": ["app", "top"], "builderScrollLocations": { "desktop": "app", "tablet": "app", "phone": "app" }, "onloadScrollLocation": "app", "builderType": "fe" };
-		var et_frontend_scripts = { "builderCssContainerPrefix": "#et-boc", "builderCssLayoutPrefix": "#et-boc .et-l" };
-		var et_pb_box_shadow_elements = [];
-		/* ]]> */
-	</script>
-	<script type='text/javascript'
-		src='https://academics.skidmore.edu/blogs/skidmorecodes/wp-content/themes/Divi/js/scripts.min.js?ver=4.23.4'
-		id='divi-custom-script-js'></script>
-	<script type='text/javascript'
-		src='https://academics.skidmore.edu/blogs/skidmorecodes/wp-content/themes/Divi/core/admin/js/common.js?ver=4.23.4'
-		id='et-core-common-js'></script>
-	<script type='text/javascript'
-		src='https://academics.skidmore.edu/blogs/skidmorecodes/wp-includes/js/dist/vendor/wp-polyfill-inert.min.js?ver=3.1.2'
-		id='wp-polyfill-inert-js'></script>
-	<script type='text/javascript'
-		src='https://academics.skidmore.edu/blogs/skidmorecodes/wp-includes/js/dist/vendor/regenerator-runtime.min.js?ver=0.13.11'
-		id='regenerator-runtime-js'></script>
-	<script type='text/javascript'
-		src='https://academics.skidmore.edu/blogs/skidmorecodes/wp-includes/js/dist/vendor/wp-polyfill.min.js?ver=3.15.0'
-		id='wp-polyfill-js'></script>
-	<script type='text/javascript'
-		src='https://academics.skidmore.edu/blogs/skidmorecodes/wp-includes/js/dist/hooks.min.js?ver=c6aec9a8d4e5a5d543a1'
-		id='wp-hooks-js'></script>
-	<script type='text/javascript' id='heartbeat-js-extra'>
-		/* <![CDATA[ */
-		var heartbeatSettings = { "ajaxurl": "\/blogs\/skidmorecodes\/wp-admin\/admin-ajax.php" };
-		var heartbeatSettings = { "ajaxurl": "\/blogs\/skidmorecodes\/wp-admin\/admin-ajax.php", "suspension": "disable", "interval": "30" };
-		/* ]]> */
-	</script>
-	<script type='text/javascript'
-		src='https://academics.skidmore.edu/blogs/skidmorecodes/wp-includes/js/heartbeat.min.js?ver=6.3.3'
-		id='heartbeat-js'></script>
-	<script type='text/javascript' id='autosave-js-extra'>
-		/* <![CDATA[ */
-		var autosaveL10n = { "autosaveInterval": "60", "blog_id": "2298" };
-		/* ]]> */
-	</script>
-	<script type='text/javascript'
-		src='https://academics.skidmore.edu/blogs/skidmorecodes/wp-includes/js/autosave.min.js?ver=6.3.3'
-		id='autosave-js'></script>
+					location.insertBefore(link, handle.nextSibling);
+				}
+			})();
+		</script>
+		<script type="text/javascript">
+			var et_animation_data = [{ "class": "et_pb_button_0", "style": "zoom", "repeat": "once", "duration": "1000ms", "delay": "0ms", "intensity": "6%", "starting_opacity": "0%", "speed_curve": "ease-in-out" }];
+		</script>
+		<link rel='stylesheet' id='wp-block-library-css'
+			href='https://academics.skidmore.edu/blogs/skidmorecodes/wp-includes/css/dist/block-library/style.min.css?ver=6.3.3'
+			type='text/css' media='none' onload="media='all'" />
+		<script type='text/javascript' id='divi-custom-script-js-extra'>
+			/* <![CDATA[ */
+			var DIVI = { "item_count": "%d Item", "items_count": "%d Items" };
+			var et_builder_utils_params = { "condition": { "diviTheme": true, "extraTheme": false }, "scrollLocations": ["app", "top"], "builderScrollLocations": { "desktop": "app", "tablet": "app", "phone": "app" }, "onloadScrollLocation": "app", "builderType": "fe" };
+			var et_frontend_scripts = { "builderCssContainerPrefix": "#et-boc", "builderCssLayoutPrefix": "#et-boc .et-l" };
+			var et_pb_custom = { "ajaxurl": "https:\/\/academics.skidmore.edu\/blogs\/skidmorecodes\/wp-admin\/admin-ajax.php", "images_uri": "https:\/\/academics.skidmore.edu\/blogs\/skidmorecodes\/wp-content\/themes\/Divi\/images", "builder_images_uri": "https:\/\/academics.skidmore.edu\/blogs\/skidmorecodes\/wp-content\/themes\/Divi\/includes\/builder\/images", "et_frontend_nonce": "cdcd559076", "subscription_failed": "Please, check the fields below to make sure you entered the correct information.", "et_ab_log_nonce": "81f5f05bff", "fill_message": "Please, fill in the following fields:", "contact_error_message": "Please, fix the following errors:", "invalid": "Invalid email", "captcha": "Captcha", "prev": "Prev", "previous": "Previous", "next": "Next", "wrong_captcha": "You entered the wrong number in captcha.", "wrong_checkbox": "Checkbox", "ignore_waypoints": "no", "is_divi_theme_used": "1", "widget_search_selector": ".widget_search", "ab_tests": [], "is_ab_testing_active": "", "page_id": "206", "unique_test_id": "", "ab_bounce_rate": "5", "is_cache_plugin_active": "no", "is_shortcode_tracking": "", "tinymce_uri": "https:\/\/academics.skidmore.edu\/blogs\/skidmorecodes\/wp-content\/themes\/Divi\/includes\/builder\/frontend-builder\/assets\/vendors", "accent_color": "#e02b20", "waypoints_options": [] };
+			var et_pb_box_shadow_elements = [];
+			/* ]]> */
+		</script>
+		<script type='text/javascript'
+			src='https://academics.skidmore.edu/blogs/skidmorecodes/wp-content/themes/Divi/js/scripts.min.js?ver=4.23.4'
+			id='divi-custom-script-js'></script>
+		<script type='text/javascript'
+			src='https://academics.skidmore.edu/blogs/skidmorecodes/wp-content/themes/Divi/core/admin/js/common.js?ver=4.23.4'
+			id='et-core-common-js'></script>
 </body>
 
 </html>
+
+
+<!-- Page cached by LiteSpeed Cache 6.0.0.1 on 2024-02-11 01:44:49 -->
