@@ -1,4 +1,5 @@
 import json
+from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 from typing import List
 from punctuators.models import PunctCapSegModelONNX
@@ -140,7 +141,7 @@ def view_video(request, video_id):
 #         VideoAnalysis.objects.create(
 #             video=video, analysis_text=analysis_result)
 
-#         return render(request, 'mainpage/analysis_result.html', {
+#         return render(request, 'mainpage/analysis.html', {
 #             'video': video,
 #             'analysis_result': analysis_result
 #         })
@@ -149,7 +150,44 @@ def view_video(request, video_id):
 #     return HttpResponse("Invalid request", status=400)
 
 
+def analyze_transcription(request, video_id):
+    # Ensure the request is an AJAX request
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+        video = get_object_or_404(Video, id=video_id)
+
+        # Use the submitted transcription text
+        text = request.POST.get('transcription_text', '')
+
+        client = OpenAI(api_key=settings.OPENAI_API_KEY)
+
+        completion = client.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {
+                    "role": "system",
+                    "content": "You are an analytical assistant designed to provide brief, actionable feedback on public speeches. Analyze the transcript for clarity, filler word usage, and effectiveness. Provide feedback in less than 10 bullet points, highlighting specific sentences for clarity issues, counting filler words, and calculating the filler word ratio. Directly reference the transcript for examples. Keep it less than 10 sentences."
+                },
+                {
+                    "role": "user",
+                    "content": text  # Use the submitted transcription as input
+                }
+            ]
+        )
+
+        analysis_result = completion.choices[0].message.content
+
+        # Return the analysis result as JSON
+        return JsonResponse({
+            'video_id': video_id,
+            'analysis_result': analysis_result
+        })
+
+    # If not an AJAX request, return an error
+    return HttpResponseBadRequest("Invalid request")
+
 # To show the data of analysis for the video.
+
+
 def view_analysis_results(request, video_id):
     video = get_object_or_404(Video, id=video_id)
     # Get all analyses for this video, newest first
@@ -161,40 +199,40 @@ def view_analysis_results(request, video_id):
     })
 
 
-@require_POST
-def analyze_transcription(request, video_id):
-    # Ensure the request content type is application/json
-    if request.headers.get('Content-Type') == 'application/json':
-        data = json.loads(request.body)
-        text = data.get('transcription_text', '')
-    else:
-        return HttpResponseBadRequest("Invalid request format, expected JSON")
+# @csrf_exempt
+# def analyze_transcription(request, video_id):
+#     if request.method == "POST":
+#         try:
+#             data = json.loads(request.body)
+#             text = data.get('transcription_text', '')
 
-    try:
-        video = get_object_or_404(Video, id=video_id)
-        openai.api_key = settings.OPENAI_API_KEY
+#             video = get_object_or_404(Video, id=video_id)
 
-        # Using the specified "gpt-3.5-turbo" model and the provided prompt structure
-        completion = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
-            messages=[
-                {
-                    "role": "system",
-                    "content": "You are an analytical assistant designed to provide brief, actionable feedback on public speeches. Analyze the transcript for clarity, filler word usage, and effectiveness. Provide feedback in less than 10 bullet points, highlighting specific sentences for clarity issues, counting filler words, and calculating the filler word ratio. Directly reference the transcript for examples."
-                },
-                {
-                    "role": "user",
-                    "content": text  # The transcription text submitted for analysis
-                }
-            ]
-        )
+#             client = OpenAI(api_key=settings.OPENAI_API_KEY)
 
-        # Adjust based on the actual structure of the OpenAI response
-        analysis_result = completion.choices[0].message.content
-        VideoAnalysis.objects.create(
-            video=video, analysis_text=analysis_result)
+#             completion = client.chat.completions.create(
+#                 model="gpt-3.5-turbo",
+#                 messages=[
+#                     {
+#                         "role": "system",
+#                         "content": "You are an analytical assistant designed to provide brief, actionable feedback on public speeches. Analyze the transcript for clarity, filler word usage, and effectiveness. Provide feedback in less than 10 bullet points, highlighting specific sentences for clarity issues, counting filler words, and calculating the filler word ratio. Directly reference the transcript for examples."
+#                     },
+#                     {
+#                         "role": "user",
+#                         "content": text  # Use the submitted transcription as input
+#                     }
+#                 ]
+#             )
 
-        return JsonResponse({'analysis_result': analysis_result})
-    except Exception as e:
-        # Returning a 400 error with a description of what went wrong
-        return HttpResponseBadRequest(f"Error processing analysis: {str(e)}")
+#             analysis_result = completion.choices[0].message.content
+#             # Saving it to database
+#             VideoAnalysis.objects.create(
+#                 video=video, analysis_text=analysis_result)
+
+#             # Return analysis result as JSON
+#             return JsonResponse({'video_id': video_id, 'analysis_result': analysis_result})
+
+#         except Exception as e:
+#             return HttpResponse("An error occurred: " + str(e), status=500)
+
+#     return HttpResponse("Invalid request", status=400)

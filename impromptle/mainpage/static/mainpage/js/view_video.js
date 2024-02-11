@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const videoId = document.getElementById('videoId').value; // Make sure this is correctly set in your HTML
+    const videoId = document.getElementById('videoId').value; // Ensure this is correctly set in your HTML
 
     // Function to get CSRF token, useful for any POST requests you might add later
     function getCookie(name) {
@@ -17,13 +17,70 @@ document.addEventListener('DOMContentLoaded', function() {
         return cookieValue;
     }
 
-    // Fetch the transcription for the video
-    fetch(`/video/${videoId}/`) // Make sure this URL matches your Django URL pattern for the transcription view
-    .then(response => response.json())
-    .then(data => {
-        // Once the transcription is received, display it
-        const transcriptionText = data.transcription;
-        document.querySelector('.transcript-section').innerHTML = `<h3>Transcription</h3><p>${transcriptionText}</p>`;
-    })
-    .catch(error => console.error('Error fetching transcription:', error));
+    // Function to fetch transcription
+    function fetchTranscription(videoId) {
+        const transcriptSection = document.querySelector('.transcript-section');
+        transcriptSection.innerHTML = `<h3>Transcription</h3><p>Fetching transcription...</p>`;
+
+        fetch(`/video/${videoId}/`) // Ensure this URL matches your Django URL pattern for the transcription view
+        .then(response => response.json())
+        .then(data => {
+            const transcriptionText = data.transcription;
+            transcriptSection.innerHTML = `<h3>Transcription</h3><p>${transcriptionText}</p>`;
+            
+            // Call the function to analyze transcription after displaying it
+            analyzeTranscription(videoId, transcriptionText);
+        })
+        .catch(error => {
+            console.error('Error fetching transcription:', error);
+            transcriptSection.innerHTML += `<p>Error fetching transcription.</p>`;
+        });
+    }
+
+    // Function to fetch analysis
+    function analyzeTranscription(videoId, transcriptionText) {
+        // Assuming you have an element to display the analysis results
+        const analysisSection = document.querySelector('.analysis-section');
+        analysisSection.innerHTML = `<h3>Analysis</h3><p>Fetching analysis...</p>`;
+
+        // Prepare the data for POST request
+        const formData = new FormData();
+        formData.append('transcription_text', transcriptionText);
+        formData.append('csrfmiddlewaretoken', getCookie('csrftoken')); // Include CSRF token
+
+        fetch(`/analyze-transcription/${videoId}/`, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest', // Important for Django to recognize AJAX request
+                // Other headers if necessary
+            },
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            analysisSection.innerHTML = `<h3>Analysis</h3><p>${data.analysis_result}</p>`;
+            renderVideo("C:\Users\ankit\Desktop\Current Projects\SBUHacks_SkidBits\impromptle\cvModel.mp4"); // Use video URL here
+        })
+        .catch(error => {
+            console.error('Error fetching analysis:', error);
+            analysisSection.innerHTML += `<p>Error fetching analysis.</p>`;
+        });
+    }
+
+    // Initiate the transcription fetch operation
+    fetchTranscription(videoId);
 });
+
+
+function renderVideo(videoUrl) {
+    const videoContainer = document.getElementById('videoContainer');
+    const videoElement = document.createElement('video');
+    videoElement.src = videoUrl;
+    videoElement.controls = true;
+    videoContainer.appendChild(videoElement);
+}
