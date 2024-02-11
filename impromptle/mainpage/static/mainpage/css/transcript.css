@@ -1,3 +1,40 @@
-#transcript-body{
-    color: blue;
+.container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.video-container {
+    width: 30%;
+    padding-right: 20px; /* Adjust the padding as necessary */
+    box-sizing: border-box;
+    margin: 10px;
+    padding: 10px;
+}
+
+.dashboard-container {
+    width: 70%;
+    padding-left: 20px; /* Adjust the padding as necessary */
+    box-sizing: border-box;
+    /* Optional: Add any additional styling here */
+}
+
+/* Ensuring the video and transcription are stacked */
+.video-container video,
+.video-container .show-transcript {
+    width: 100%;
+    margin-bottom: 20px; /* Space between video and transcription */
+}
+
+/* Optional: Styling for the dashboard */
+.dashboard-container {
+    /* Example styles, customize as needed */
+    border-left: 1px solid #ccc; /* Visual separation if desired */
+    padding: 20px;
+}
+
+/* If you want to ensure the video maintains aspect ratio */
+video {
+    height: auto;
+    max-width: 100%;
 }

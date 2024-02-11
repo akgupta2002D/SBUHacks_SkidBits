@@ -29,7 +29,7 @@ def upload_video(request):
             return redirect(reverse('view_video', kwargs={'video_id': video.id}))
     else:
         form = VideoForm()
-    return render(request, 'mainpage/upload_video.html', {'form': form})
+    return render(request, 'mainpage/main_page.html', {'form': form})
 
 # Change the function below to work with the video that we upload above.
 
