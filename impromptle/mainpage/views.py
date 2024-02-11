@@ -2,7 +2,7 @@ from moviepy.video.io import VideoFileClip
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 from .forms import VideoForm
-from .models import Video
+from .models import Video, VideoAnalysis
 from moviepy.editor import VideoFileClip
 import speech_recognition as sr
 # Create your views here.
@@ -79,7 +79,7 @@ def analyze_transcription(request, video_id):
             messages=[
                 {
                     "role": "system",
-                    "content": "You are a poetic assistant, skilled in explaining complex programming concepts with creative flair."
+                    "content": "You are an analytical assistant designed to provide brief, actionable feedback on public speeches. Analyze the transcript for clarity, filler word usage, and effectiveness. Provide feedback in less than 10 bullet points, highlighting specific sentences for clarity issues, counting filler words, and calculating the filler word ratio. Directly reference the transcript for examples."
                 },
                 {
                     "role": "user",
@@ -89,6 +89,9 @@ def analyze_transcription(request, video_id):
         )
 
         analysis_result = completion.choices[0].message.content
+        # We are also saving it to database.
+        VideoAnalysis.objects.create(
+            video=video, analysis_text=analysis_result)
 
         return render(request, 'mainpage/analysis_result.html', {
             'video': video,
@@ -97,3 +100,15 @@ def analyze_transcription(request, video_id):
 
     # If not POST, redirect to the video page or another appropriate action
     return HttpResponse("Invalid request", status=400)
+
+
+# To show the data of analysis for the video.
+def view_analysis_results(request, video_id):
+    video = get_object_or_404(Video, id=video_id)
+    # Get all analyses for this video, newest first
+    analyses = video.analyses.all().order_by('-created_at')
+
+    return render(request, 'mainpage/view_analysis_results.html', {
+        'video': video,
+        'analyses': analyses
+    })
