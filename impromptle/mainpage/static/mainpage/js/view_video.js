@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(data => {
             analysisSection.innerHTML = `<h3>Analysis</h3><p>${data.analysis_result}</p>`;
-            renderVideo("C:\Users\ankit\Desktop\Current Projects\SBUHacks_SkidBits\impromptle\cvModel.mp4"); // Use video URL here
+            renderVideo("C:\Users\ankit\Desktop\Current Projects\SBUHacks_SkidBits\impromptle\media\cvModel.mp4"); // Use video URL here
         })
         .catch(error => {
             console.error('Error fetching analysis:', error);
