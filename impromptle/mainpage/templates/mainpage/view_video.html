@@ -1,6 +1,6 @@
 
   
-  {% extends 'mainpage/base.html' %}
+{% extends 'mainpage/base.html' %}
 {% load static %}
 
 {% block title %}Webcam Page{% endblock %}
@@ -12,10 +12,19 @@
 {% block body %}
 <div class="container">
     <!-- view_video.html -->
-    <video width="320" height="240" controls>
-    <source src="{{ video.video.url }}" type="video/mp4">
-    Your browser does not support the video tag.
+    <video controls>
+      <source src="{{ video.video.url }}" type="video/mp4">
+      Your browser does not support the video tag.
   </video>
+  <div class="show-transcript">
+      <h2>Transcription:</h2>
+      <p id="transcript-body">{{ text }}</p>
+  </div>
+  <form action="{% url 'analyze_transcription' video.id %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="transcription_text" value="{{ text }}" />
+    <button type="submit" class="btn btn-primary">Analyze</button>
+</form>
 </div>
 {% comment %} <script src="{% static 'mainpage/js/record.js' %}"></script> {% endcomment %}
 {% endblock %}
